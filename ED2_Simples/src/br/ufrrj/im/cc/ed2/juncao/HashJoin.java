@@ -4,23 +4,53 @@ import java.util.Hashtable;
 
 import br.ufrrj.im.cc.ed2.join.base.Iterator;
 import br.ufrrj.im.cc.ed2.join.base.Relacao;
+import br.ufrrj.im.cc.ed2.join.base.Selecao;
 import br.ufrrj.im.cc.ed2.join.base.Tupla;
 
 public class HashJoin implements Iterator {
 
-	private Relacao relacaoConstrucao;
-	private Relacao relacaoPoda;
+	private Iterator relacaoConstrucao;
+	private Iterator relacaoPoda;
 	private String campoRelacao2;
 	private String campoRelacao1;
 	private Hashtable<String, Tupla> tabela;
 	
+	
+	// junta os dois arquivos 
 	public HashJoin(String relacao1, String campoRelacao1, String relacao2, String campoRelacao2) {
+		
 		this.relacaoConstrucao = new Relacao(relacao1);
 		this.relacaoPoda = new Relacao(relacao2);
 		this.campoRelacao1 = campoRelacao1;
 		this.campoRelacao2 = campoRelacao2;
 	}
 	
+	// arquivo e uma seleçao
+	public HashJoin(String relacao1, String campoRelacao1, Iterator selecao, String campoRelacao2){
+		
+		this.relacaoConstrucao = new Relacao(relacao1);
+		this.relacaoPoda = selecao;
+		this.campoRelacao1 = campoRelacao1;
+		this.campoRelacao2 = campoRelacao2;
+	}
+	
+	//  seleçao e arquivo 
+	public HashJoin(Selecao selecao, String campoRelacao1, String relacao2, String campoRelacao2){
+		
+		this.relacaoConstrucao = selecao;
+		this.relacaoPoda = new Relacao(relacao2);
+		this.campoRelacao1 = campoRelacao1;
+		this.campoRelacao2 = campoRelacao2;
+	}
+	
+	// duas seleçoes
+	public HashJoin(Iterator selecao, String campoRelacao1, Iterator relacao2, String campoRelacao2){
+		
+		this.relacaoConstrucao = selecao;
+		this.relacaoPoda = relacao2;
+		this.campoRelacao1 = campoRelacao1;
+		this.campoRelacao2 = campoRelacao2;
+	}
 	@Override
 	public Iterator open() {
 		tabela = new Hashtable<>();
