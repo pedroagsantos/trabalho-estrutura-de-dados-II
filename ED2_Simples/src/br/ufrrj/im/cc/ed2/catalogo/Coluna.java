@@ -8,6 +8,7 @@ public class Coluna implements Comparable<Coluna>{
 	private int ordem;
 	private boolean valoresUnicos;
 	private Map<String, Integer> histograma;
+	private String chaveEstrangeira;
 	//outros metadados... histograma de valores, por exemplo.
 	
 	public Coluna(String nome, String tipo, int ordem, 
