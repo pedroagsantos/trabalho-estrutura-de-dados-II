@@ -12,12 +12,18 @@ public class Coluna implements Comparable<Coluna>{
 	//outros metadados... histograma de valores, por exemplo.
 	
 	public Coluna(String nome, String tipo, int ordem, 
-			Map<String, Integer> histograma, boolean valoresUnicos) {
+			Map<String, Integer> histograma, boolean valoresUnicos, String chaveEstrangeira) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.ordem = ordem;
 		this.histograma = histograma;
 		this.valoresUnicos = valoresUnicos;
+		this.chaveEstrangeira = chaveEstrangeira;
+	}
+	
+	public Coluna(String nome, String tipo, int ordem, 
+			Map<String, Integer> histograma, boolean valoresUnicos) {
+		this(nome, tipo, ordem, histograma, valoresUnicos, null);
 	}
 	
 	public Coluna(String nome, String tipo, int ordem,
