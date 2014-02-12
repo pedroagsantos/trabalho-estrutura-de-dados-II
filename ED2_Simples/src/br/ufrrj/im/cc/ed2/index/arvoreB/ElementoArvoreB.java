@@ -16,6 +16,7 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 		this.chave = chave;
 		this.menores = new TreeSet<ElementoArvoreB>();
 		this.posicaoArquivo = new ArrayList<Long>();
+		this.menores.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
 	}
 	
 	@Override
