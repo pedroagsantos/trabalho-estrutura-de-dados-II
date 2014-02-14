@@ -34,8 +34,42 @@ public class ArvoreB {
 			}
 		}
 		
-		if(raiz.size() == 2 * ordem + 2){
-			
+		if(raiz.size() == 2 * ordem + 2) {
+			ElementoArvoreB[] asArray = (ElementoArvoreB[])raiz.toArray();
+			SortedSet<ElementoArvoreB> novaPag = new TreeSet<>();	
+			SortedSet<ElementoArvoreB> menores = new TreeSet<ElementoArvoreB>();
+			SortedSet<ElementoArvoreB> maiores = new TreeSet<ElementoArvoreB>();
+			if(asArray[ordem].getPagPai() == null){
+				for(int i = 0; i < ordem;i++) {
+					asArray[i].setPagPai(novaPag);
+					menores.add(asArray[i]);
+				}
+				menores.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
+				for(int i = ordem+1; i < asArray.length; i++) {
+					asArray[i].setPagPai(novaPag);
+					maiores.add(asArray[i]);
+				}
+				asArray[ordem].setMenores(menores);
+				novaPag.add(asArray[ordem]);
+				ElementoArvoreB infinito = new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY));
+				infinito.setMenores(maiores);
+				novaPag.add(infinito);
+			} else {
+				insere(asArray[ordem], asArray[ordem].getPagPai());
+				for(int i = 0; i < ordem;i++) {
+					menores.add(asArray[i]);
+				}
+				menores.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
+				for(int i = ordem+1; i < asArray.length; i++) {
+					maiores.add(asArray[i]);
+				}
+				asArray[ordem].setMenores(menores);
+				for (ElementoArvoreB elementoArvoreB : asArray[ordem].getPagPai()) {
+					if(maiores.first().compareTo(elementoArvoreB) > 0)
+						elementoArvoreB.setMenores(maiores);
+				}
+				
+			}
 		}
 			
 	}
