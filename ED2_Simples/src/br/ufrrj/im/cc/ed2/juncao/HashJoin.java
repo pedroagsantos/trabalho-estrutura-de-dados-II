@@ -57,8 +57,10 @@ public class HashJoin implements Iterator {
 		relacaoConstrucao.open();
 		Tupla tupla;
 		while ((tupla = (Tupla) relacaoConstrucao.next()) != null) {
-			String valor = tupla.getValorCampo(campoRelacao1);
-			tabela.put(valor, tupla);
+			
+				String valor = tupla.getValorCampo(campoRelacao1);
+				tabela.put(valor, tupla);
+			
 		}
 		relacaoPoda.open();
 		return this;
@@ -76,14 +78,17 @@ public class HashJoin implements Iterator {
 		}
 		else{
 			Tupla tuplaResultante = new Tupla();
+						
 			tuplaResultante.concatena(tupla);
 			tuplaResultante.concatena(tuplaCorrespondente);
+			
 			return tuplaResultante;
 		}
 	}
 
 	@Override
 	public Iterator close() {
+		
 		relacaoConstrucao.close();
 		relacaoPoda.close();
 		return this;
@@ -91,6 +96,7 @@ public class HashJoin implements Iterator {
 	
 	@Override
 	public long calculaCusto() {
+		
 		return relacaoConstrucao.calculaCusto() + relacaoPoda.calculaCusto();
 	}
 

@@ -3,6 +3,7 @@ package br.ufrrj.im.cc.ed2.catalogo;
 import java.util.Map;
 
 public class Coluna implements Comparable<Coluna>{
+	
 	private String nome;
 	private String tipo;
 	private int ordem;

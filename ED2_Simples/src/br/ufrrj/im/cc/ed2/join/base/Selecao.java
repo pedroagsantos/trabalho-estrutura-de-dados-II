@@ -1,5 +1,7 @@
 package br.ufrrj.im.cc.ed2.join.base;
 
+import java.io.IOException;
+
 public class Selecao implements Iterator {
 	
 	String nome;
@@ -17,8 +19,8 @@ public class Selecao implements Iterator {
 	}
 	public Selecao(Iterator selecao, String campo, String valor ){
 		
-		this.relacao = relacao;
-		this.nome= nome;
+		this.relacao = selecao;
+		this.campo= campo;
 		this.valor = valor;			
 	}
 	
@@ -39,7 +41,7 @@ public class Selecao implements Iterator {
 			}	
 			
 		}
-		return tupla;
+		return null;
 	}
 	
 
@@ -48,13 +50,13 @@ public class Selecao implements Iterator {
 		relacao.close();
 		return null;
 	}
-	@Override
+	
+	
 	public long calculaCusto() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		
+		return ((Relacao) relacao).calculaCusto();
+	
+	}	
 	
 	
-	
-
 }

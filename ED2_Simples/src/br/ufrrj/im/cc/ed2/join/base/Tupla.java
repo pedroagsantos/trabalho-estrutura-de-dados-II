@@ -24,7 +24,7 @@ public class Tupla implements Iterator{
 		String[] valores = linha.split("\t");
 		List<Coluna> colunasRelacao = Catalogo.getInstancia().recuperaColunas(nomeRelacao);
 		if(valores.length != colunasRelacao.size()){
-			throw new RuntimeException("O nÃºmero de colunas na descriÃ§Ã£o da relaÃ§Ã£o "+nomeRelacao+" Ã© incompatÃ­vel com"
+			throw new RuntimeException("O número de colunas na descrição da relação "+ nomeRelacao +" É incompatível com"
 					+ " o lido do arquivo. Linha lida: "+linha);
 		}
 		for (int i = 0; i < valores.length; i++) {

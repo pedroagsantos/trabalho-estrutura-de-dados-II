@@ -24,65 +24,77 @@ public class Catalogo {
 		criaColunasAluno("matricula", 2);
 		criaColunasAluno("nome", 3);
 
-		ItemCatalogo itemAluno = new ItemCatalogo("Aluno", "Alunos.txt", colunasRelacaoAluno, 2000);
+		ItemCatalogo itemAluno = new ItemCatalogo("Alunos", "Alunos.txt", colunasRelacaoAluno, 2000);
 		itens.add(itemAluno);
 
 		criaColunasCurso("id", 0);
-		criaColunasCurso("nome", 1);
-		ItemCatalogo itemCategoria = new ItemCatalogo("Categoria", "categorias.txt", colunasRelacaoCurso, 7);
-		itens.add(itemCategoria);
+		//Mudei o nome do curso de nome para nome_curso 12/02
+		criaColunasCurso("nome_curso", 1);
+		ItemCatalogo itemCurso = new ItemCatalogo("Cursos", "Cursos.txt", colunasRelacaoCurso, 7);
+		itens.add(itemCurso);
 
 		criaColunasDisciplina("id", 0);
 		criaColunasDisciplina("nome", 1);
 		criaColunasDisciplina("curso_id", 2);
-		ItemCatalogo itemAutor = new ItemCatalogo("Autor", "autores.txt", colunasRelacaoDisciplina, 303);
-		itens.add(itemAutor);
+		ItemCatalogo itemDisciplina = new ItemCatalogo("Disciplinas", "Disciplinas.txt", colunasRelacaoDisciplina, 303);
+		itens.add(itemDisciplina);
 
 	}
 
 	private void criaColunasAluno(String nomeColuna, int ordem) {
+		
 		if(nomeColuna.equals("id"))	{
+			
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoAluno.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
+			
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
 			colunasRelacaoAluno.add(coluna);
-		}else{
+		}
+		else{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem);
 			colunasRelacaoAluno.add(coluna);
 		}
 	}
 
 	private void criaColunasCurso(String nomeColuna, int ordem) {
+		
 		if(nomeColuna.equals("id"))	{
+			
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoCurso.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
+			
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
 			colunasRelacaoCurso.add(coluna);
-		}else{
+		}
+		else{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem);
 			colunasRelacaoCurso.add(coluna);
 		}
 	}
 
 	private void criaColunasDisciplina(String nomeColuna, int ordem) {
+		
 		if(nomeColuna.equals("id"))	{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoDisciplina.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
+			
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
 			colunasRelacaoDisciplina.add(coluna);
-		}else{
+		}
+		else{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem);
 			colunasRelacaoDisciplina.add(coluna);
 		}
