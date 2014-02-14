@@ -10,6 +10,7 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 	private String chave; //aluno_id-ano-periodo
 	private List<Long> posicaoArquivo;
 	private SortedSet<ElementoArvoreB> menores;
+	private SortedSet<ElementoArvoreB> pagPai;
 	
 	
 	public ElementoArvoreB (String chave){
@@ -30,7 +31,11 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 		else
 			return this.chave.compareTo(arg0.getChave());
 	}
-
+	
+	public void addPosicaoArquivo(Long valor){
+		this.posicaoArquivo.add(valor);
+	}
+	
 	public String getChave() {
 		return chave;
 	}
@@ -46,6 +51,23 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 	public SortedSet<ElementoArvoreB> getMenores(){
 		return this.menores;
 	}
+
+	public void setMenores(SortedSet<ElementoArvoreB> menores) {
+		this.menores = menores;
+	}
+
+	public SortedSet<ElementoArvoreB> getPagPai() {
+		return pagPai;
+	}
+
+	public void setPagPai(SortedSet<ElementoArvoreB> pagPai) {
+		this.pagPai = pagPai;
+	}
+
+	
+	
+	
+	
 	
 	
 }
