@@ -55,7 +55,6 @@ public class ArvoreB {
 				infinito.setMenores(maiores);
 				novaPag.add(infinito);
 			} else {
-				insere(asArray[ordem], asArray[ordem].getPagPai());
 				for(int i = 0; i < ordem;i++) {
 					menores.add(asArray[i]);
 				}
@@ -68,6 +67,7 @@ public class ArvoreB {
 					if(maiores.first().compareTo(elementoArvoreB) > 0)
 						elementoArvoreB.setMenores(maiores);
 				}
+				asArray[ordem].getPagPai().add(asArray[ordem]);
 				
 			}
 		}
