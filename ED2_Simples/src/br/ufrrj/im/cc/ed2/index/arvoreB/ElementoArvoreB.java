@@ -64,10 +64,5 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 		this.pagPai = pagPai;
 	}
 
-	
-	
-	
-	
-	
-	
 }
+
