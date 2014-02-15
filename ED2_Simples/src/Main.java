@@ -2,6 +2,7 @@ import br.ufrrj.im.cc.ed2.join.base.Projecao;
 import br.ufrrj.im.cc.ed2.join.base.Selecao;
 import br.ufrrj.im.cc.ed2.join.base.Tupla;
 import br.ufrrj.im.cc.ed2.juncao.HashJoin;
+import br.ufrrj.im.cc.ed2.juncao.MergeJoin;
 import br.ufrrj.im.cc.ed2.juncao.NestedLoopJoin;
 
 
@@ -20,12 +21,21 @@ public class Main {
 		NestedLoopJoin relation2 = new NestedLoopJoin ("Alunos", "curso_id", relation, "id");
 		Projecao relation1 = new Projecao(relation2, "nome");*/
 
-		//Plano A pode
+	/*	Selecao  relation = new Selecao("Cursos", "nome_curso", "MATEM햀ICA");
+		MergeJoin relation2 = new MergeJoin ( "Alunos", "curso_id",relation, "id");
+		Projecao relation1 = new Projecao(relation2, "nome");*/
+
+		// com tres campos 
 		Selecao  relation = new Selecao("Cursos", "nome_curso", "MATEM햀ICA");
+		HashJoin relation2 = new HashJoin(relation, "id", "Alunos", "curso_id");
+		Projecao relation1 = new Projecao(relation2, "nome", "matricula", "id");
+		
+		//Plano A pode
+		/*Selecao  relation = new Selecao("Cursos", "nome_curso", "MATEM햀ICA");
 		//HashJoin relation2 = new HashJoin(relation, "id", "Alunos", "curso_id");
 		HashJoin relation2 = new HashJoin(relation, "id", "Alunos", "curso_id");
 		Projecao relation1 = new Projecao(relation2, "nome");
-		
+		*/
 		//Plano B
 		/*HashJoin relation = new HashJoin("Cursos", "id", "Alunos", "curso_id");
 		Selecao relation2 = new Selecao(relation, "nome_curso", "MATEM햀ICA");
@@ -38,9 +48,9 @@ public class Main {
 		while ((tupla = (Tupla) relation1.next()) != null) {
 			i++;
 			if(tupla.getValorCampo("nome") != null)
-			System.out.println(tupla.getValorCampo("nome") + " " + i);
+			//System.out.println(tupla.getValorCampo("nome") + " " + i);
 			//System.out.println("["+tupla.getValorCampo("nome")+"] : "+tupla.getValorCampo("nome_curso") + " " + i);
-		
+			System.out.println("["+tupla.getValorCampo("nome")+"] : "+tupla.getValorCampo("matricula") + " [id] "+":" +tupla.getValorCampo("id") + " " + i);
 			
 		}
 		relation1.close();

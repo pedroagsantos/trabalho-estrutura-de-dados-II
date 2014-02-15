@@ -10,6 +10,8 @@ public class Catalogo {
 	private List<Coluna> colunasRelacaoAluno;
 	private List<Coluna> colunasRelacaoCurso;
 	private List<Coluna> colunasRelacaoDisciplina;
+	private List<Coluna> colunasRelacaoDisciplinaHistorico;
+
 
 	// ----------------------------------------------------
 	private Catalogo() {
@@ -18,6 +20,7 @@ public class Catalogo {
 		colunasRelacaoAluno = new LinkedList<>();
 		colunasRelacaoCurso = new LinkedList<>();
 		colunasRelacaoDisciplina = new LinkedList<>();
+		colunasRelacaoDisciplinaHistorico = new LinkedList<>();
 
 		criaColunasAluno("id", 0);
 		criaColunasAluno("curso_id", 1);
@@ -39,17 +42,28 @@ public class Catalogo {
 		ItemCatalogo itemDisciplina = new ItemCatalogo("Disciplinas", "Disciplinas.txt", colunasRelacaoDisciplina, 303);
 		itens.add(itemDisciplina);
 
+		criaColunasDisciplinaHistorico("id", 0);
+		criaColunasDisciplinaHistorico("aluno_id", 1);
+		criaColunasDisciplinaHistorico("disciplina_id", 2);
+		criaColunasDisciplinaHistorico("nota", 3);
+		criaColunasDisciplinaHistorico("ano", 4);
+		criaColunasDisciplinaHistorico("periodo", 5);
+		criaColunasDisciplinaHistorico("situacao", 6);
+		ItemCatalogo itemDisciplinaHistorico = new ItemCatalogo("DisciplinaHistorico", "DisciplinaHistorico.txt", colunasRelacaoDisciplinaHistorico, 120056);
+		itens.add(itemDisciplinaHistorico);
+
+
 	}
 
 	private void criaColunasAluno(String nomeColuna, int ordem) {
-		
+
 		if(nomeColuna.equals("id"))	{
-			
+
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoAluno.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
-			
+
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
@@ -62,14 +76,14 @@ public class Catalogo {
 	}
 
 	private void criaColunasCurso(String nomeColuna, int ordem) {
-		
+
 		if(nomeColuna.equals("id"))	{
-			
+
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoCurso.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
-			
+
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
@@ -82,13 +96,13 @@ public class Catalogo {
 	}
 
 	private void criaColunasDisciplina(String nomeColuna, int ordem) {
-		
+
 		if(nomeColuna.equals("id"))	{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
 			colunasRelacaoDisciplina.add(coluna);
 		}
 		else if(nomeColuna.indexOf("id") > -1){
-			
+
 			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
 			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
 			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
@@ -97,6 +111,26 @@ public class Catalogo {
 		else{
 			Coluna coluna = new Coluna(nomeColuna, "String", ordem);
 			colunasRelacaoDisciplina.add(coluna);
+		}
+	}
+
+	private void criaColunasDisciplinaHistorico(String nomeColuna, int ordem) {
+
+		if(nomeColuna.equals("id"))	{
+
+			Coluna coluna = new Coluna(nomeColuna, "String", ordem, null, true);
+			colunasRelacaoDisciplinaHistorico.add(coluna);
+		}
+		else if(nomeColuna.indexOf("id") > -1){
+
+			String[] relacaoChaveEstrangeira = nomeColuna.split("_");
+			String nomeRelacao = relacaoChaveEstrangeira[0].replaceFirst(String.valueOf(nomeColuna.charAt(0)), String.valueOf(nomeColuna.charAt(0)).toUpperCase());
+			Coluna coluna = new  Coluna(nomeColuna, "String", ordem, null, false, nomeRelacao);
+			colunasRelacaoDisciplinaHistorico.add(coluna);
+		}
+		else{
+			Coluna coluna = new Coluna(nomeColuna, "String", ordem);
+			colunasRelacaoDisciplinaHistorico.add(coluna);
 		}
 	}
 
