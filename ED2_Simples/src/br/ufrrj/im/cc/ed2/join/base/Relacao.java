@@ -82,11 +82,13 @@ public class Relacao implements Iterator {
 		return Catalogo.getInstancia().recuperaNumeroLinhas(nomeRelacao);
 	}
 	
-	public Iterator voltaLinha(long linha) {
+	public Iterator retornaLinha(long linha) {
+		
 		try {
 			arquivo.seek(linha);
 			return this;
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

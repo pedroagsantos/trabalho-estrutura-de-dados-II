@@ -37,7 +37,7 @@ public class Main {
 		int i = 0;
 		while ((tupla = (Tupla) relation1.next()) != null) {
 			i++;
-			//if(tupla.getValorCampo("nome") != null)
+			if(tupla.getValorCampo("nome") != null)
 			System.out.println(tupla.getValorCampo("nome") + " " + i);
 			//System.out.println("["+tupla.getValorCampo("nome")+"] : "+tupla.getValorCampo("nome_curso") + " " + i);
 		
