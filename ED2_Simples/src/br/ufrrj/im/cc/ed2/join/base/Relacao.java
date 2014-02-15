@@ -23,7 +23,7 @@ public class Relacao implements Iterator {
 	public Iterator open() {
 
 		String nomeArquivo = Catalogo.getInstancia().recuperaNomeArquivo(nomeRelacao);
-		
+
 
 		try {
 			arquivo = new RandomAccessFile(new File(nomeArquivo), "r");
@@ -81,9 +81,9 @@ public class Relacao implements Iterator {
 
 		return Catalogo.getInstancia().recuperaNumeroLinhas(nomeRelacao);
 	}
-	
+
 	public Iterator retornaLinha(long linha) {
-		
+
 		try {
 			arquivo.seek(linha);
 			return this;

@@ -6,6 +6,7 @@ public class Projecao implements Iterator {
 	private Iterator relacao;
 	private String tipoRelacao;
 	private String coluna;
+	private String coluna2;
 
 
 	public Projecao(String tipoRelacao, String coluna) {
@@ -13,11 +14,19 @@ public class Projecao implements Iterator {
 		this.relacao = new Relacao(tipoRelacao);
 		this.coluna = coluna;
 	}
-
+	
 	public Projecao(Iterator relacao, String coluna) {
 		
 		this.relacao = relacao;
 		this.coluna = coluna;
+		
+	}
+
+	public Projecao(Iterator relacao, String coluna,  String coluna2) {
+		
+		this.relacao = relacao;
+		this.coluna = coluna;
+		this.coluna2 = coluna2;
 
 	}
 	@Override
@@ -35,14 +44,26 @@ public class Projecao implements Iterator {
 		Tupla tupla = new Tupla();
 		Tupla valor = new Tupla();
 		ColunaTupla c;
+		ColunaTupla c2;
 		tupla = (Tupla) relacao.next();
 
-		if(tupla != null){
-			c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
-			valor.adicionaColuna(c);
-			return valor;
-		}else
-			return null;
+		if(coluna2 == null){
+			if(tupla != null){
+				c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
+				valor.adicionaColuna(c);
+				return valor;
+			}else
+				return null;
+		}else {
+			if(tupla != null){
+				c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
+				c2 = new ColunaTupla(coluna2, tupla.getValorCampo(coluna2));
+				valor.adicionaColuna(c);
+				valor.adicionaColuna(c2);
+				return valor;
+			}else
+				return null;
+		}
 
 
 	}
