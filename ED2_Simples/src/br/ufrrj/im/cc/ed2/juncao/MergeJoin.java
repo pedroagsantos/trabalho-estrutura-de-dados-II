@@ -55,18 +55,25 @@ public class MergeJoin implements Iterator {
 	
 		do {
 			campo = tuplaOut.getValorCampo(campoRelacao2);
-			
+
 			while ((tuplaIn = (Tupla) relacaoIn.next()) != null) {
-				
+
 				tuplaResultante = new Tupla();
-				
+
 				if(tuplaIn.getValorCampo(campoRelacao1).equals(campo)){
-					
+
 					tuplaResultante.concatena(tuplaOut);
 					tuplaResultante.concatena(tuplaIn);
 					return (tuplaResultante);
 				}
+
+				if(tuplaIn.getValorCampo(campoRelacao1).compareTo(campoRelacao2)== +1){
+					
+					return tuplaResultante;
+				}
+
 			}
+
 			campo = null;
 		} while ((tuplaOut = (Tupla) relacaoOut.next()) != null);
 		
@@ -85,7 +92,7 @@ public class MergeJoin implements Iterator {
 
 	public long calculaCusto() {
 
-		return relacaoIn.getNumeroLinhas() * 10;
+		return relacaoIn.getNumeroLinhas() * 10000;
 
 	}
 
