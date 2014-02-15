@@ -25,12 +25,15 @@ public class ArvoreB {
 			return;
 		} else {
 			for (ElementoArvoreB elementoArvoreB : raiz) {
+				if(elemento.compareTo(elementoArvoreB) == 0)
+					return;
 				if(elemento.compareTo(elementoArvoreB) > 0) {
 					if(elemento.getMenores().size() == 1) 
 						raiz.add(elemento);
 					else
 						insere(elemento, elemento.getMenores());
 				}
+				
 			}
 		}
 		
@@ -72,6 +75,26 @@ public class ArvoreB {
 			}
 		}
 			
+	}
+
+
+	public ElementoArvoreB busca(SortedSet<ElementoArvoreB> raiz, String chave) {
+
+		if (raiz.size() == 1) {
+			return null;
+		}
+
+		else {
+			for (ElementoArvoreB elemento : raiz) {
+				if (chave.equals(elemento.getChave())) {
+					return elemento;
+				} else if (chave.compareTo(elemento.getChave()) < 0) {
+					return busca(elemento.getMenores(), chave);
+				}
+			}
+		}
+		return null;
+
 	}
 
 }
