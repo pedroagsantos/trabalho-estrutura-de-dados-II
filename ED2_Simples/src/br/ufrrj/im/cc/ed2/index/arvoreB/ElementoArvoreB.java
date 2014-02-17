@@ -17,7 +17,6 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 		this.chave = chave;
 		this.menores = new TreeSet<ElementoArvoreB>();
 		this.posicaoArquivo = new ArrayList<Long>();
-		this.menores.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
 	}
 	
 	@Override
@@ -32,19 +31,15 @@ public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
 			return this.chave.compareTo(arg0.getChave());
 	}
 	
-	public void addPosicaoArquivo(Long valor){
-		this.posicaoArquivo.add(valor);
-	}
-	
 	public String getChave() {
 		return chave;
 	}
 
-	public List<Long> getposicaoArquivo() {
+	public List<Long> getPosicaoArquivo() {
 		return posicaoArquivo;
 	}
 	
-	public void addposicaoArquivo(Long posicaoArquivo){
+	public void addPosicaoArquivo(Long posicaoArquivo){
 		this.posicaoArquivo.add(posicaoArquivo);
 	}
 	

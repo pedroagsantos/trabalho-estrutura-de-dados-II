@@ -19,16 +19,17 @@ public class ArvoreB {
 	}
 	
 	private void insere (ElementoArvoreB elemento, SortedSet<ElementoArvoreB> raiz){
-		if(raiz.size() == 1)
+		if(raiz.isEmpty())
 		{
 			raiz.add(elemento);
+			raiz.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
 			return;
 		} else {
 			for (ElementoArvoreB elementoArvoreB : raiz) {
 				if(elemento.compareTo(elementoArvoreB) == 0)
 					return;
-				if(elemento.compareTo(elementoArvoreB) > 0) {
-					if(elemento.getMenores().size() == 1) 
+				if(elemento.compareTo(elementoArvoreB) < 0) {
+					if(elemento.getMenores().isEmpty()) 
 						raiz.add(elemento);
 					else
 						insere(elemento, elemento.getMenores());
@@ -38,7 +39,11 @@ public class ArvoreB {
 		}
 		
 		if(raiz.size() == 2 * ordem + 2) {
-			ElementoArvoreB[] asArray = (ElementoArvoreB[])raiz.toArray();
+			Object[] asArrayObj = raiz.toArray();
+			ElementoArvoreB[] asArray = new ElementoArvoreB[asArrayObj.length];
+			for (int i = 0; i < asArrayObj.length; i++) {
+				asArray[i] = (ElementoArvoreB)asArrayObj[i];
+			}
 			SortedSet<ElementoArvoreB> novaPag = new TreeSet<>();	
 			SortedSet<ElementoArvoreB> menores = new TreeSet<ElementoArvoreB>();
 			SortedSet<ElementoArvoreB> maiores = new TreeSet<ElementoArvoreB>();
@@ -67,7 +72,7 @@ public class ArvoreB {
 				}
 				asArray[ordem].setMenores(menores);
 				for (ElementoArvoreB elementoArvoreB : asArray[ordem].getPagPai()) {
-					if(maiores.first().compareTo(elementoArvoreB) > 0)
+					if(maiores.first().compareTo(elementoArvoreB) < 0)
 						elementoArvoreB.setMenores(maiores);
 				}
 				asArray[ordem].getPagPai().add(asArray[ordem]);
@@ -77,10 +82,13 @@ public class ArvoreB {
 			
 	}
 
+	public ElementoArvoreB busca(String chave){
+		return busca(this.raiz, chave);
+	}
+	
+	private ElementoArvoreB busca(SortedSet<ElementoArvoreB> raiz, String chave) {
 
-	public ElementoArvoreB busca(SortedSet<ElementoArvoreB> raiz, String chave) {
-
-		if (raiz.size() == 1) {
+		if (raiz.isEmpty()) {
 			return null;
 		}
 
