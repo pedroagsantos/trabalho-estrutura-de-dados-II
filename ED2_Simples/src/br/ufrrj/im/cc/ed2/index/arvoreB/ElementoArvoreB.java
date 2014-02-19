@@ -1,12 +1,15 @@
 package br.ufrrj.im.cc.ed2.index.arvoreB;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class ElementoArvoreB implements Comparable<ElementoArvoreB> {
+public class ElementoArvoreB implements Comparable<ElementoArvoreB>, Serializable {
 	
+
+	private static final long serialVersionUID = -4820572557174877801L;
 	private String chave; //aluno_id-ano-periodo
 	private List<Long> posicaoArquivo;
 	private SortedSet<ElementoArvoreB> menores;
