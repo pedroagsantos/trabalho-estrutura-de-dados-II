@@ -1,10 +1,13 @@
 package br.ufrrj.im.cc.ed2.index.arvoreB;
 
+import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class ArvoreB {
+public class ArvoreB implements Serializable{
 	
+
+	private static final long serialVersionUID = 2027520021246047967L;
 	private SortedSet<ElementoArvoreB> raiz;
 	Integer ordem;
 	
@@ -25,14 +28,19 @@ public class ArvoreB {
 			raiz.add(new ElementoArvoreB(String.valueOf(Double.POSITIVE_INFINITY)));
 			return;
 		} else {
-			for (ElementoArvoreB elementoArvoreB : raiz) {
-				if(elemento.compareTo(elementoArvoreB) == 0)
+			ElementoArvoreB[] asArray = new ElementoArvoreB[raiz.size()];
+			Object[] raizAsObjects = raiz.toArray();
+			for(int i = 0; i < raizAsObjects.length; i++){
+				asArray[i] = (ElementoArvoreB)raizAsObjects[i];
+			}
+			for (int i =0; i < raizAsObjects.length ; i++) {
+				if(this.busca(elemento.getChave()) != null)
 					return;
-				if(elemento.compareTo(elementoArvoreB) < 0) {
+				if(elemento.compareTo(asArray[i]) < 0) {
 					if(elemento.getMenores().isEmpty()) 
 						raiz.add(elemento);
 					else
-						insere(elemento, elemento.getMenores());
+						insere(elemento, asArray[i].getMenores());
 				}
 				
 			}
