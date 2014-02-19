@@ -22,6 +22,7 @@ public class NomeMatriculaNestedLoopJoin2 implements Iterator {
 		this.nestedloopjoin = new NestedLoopJoin("Curso", "id", "Alunos", "curso_id");
 		this.selecao = new Selecao(nestedloopjoin, "nome_curso", curso);//"MATEMÁTICA"
 		
+
 	}
 
 	@Override
@@ -48,8 +49,10 @@ public class NomeMatriculaNestedLoopJoin2 implements Iterator {
 				colunaB = new ColunaTupla("matricula", tupla.getValorCampo("matricula"));
 				tuplaResultante.adicionaColuna(colunaA);
 				tuplaResultante.adicionaColuna(colunaB);
+				//System.out.println(tuplaResultante);
 
 				return tuplaResultante;
+
 			}
 		}
 		return null;
@@ -64,8 +67,8 @@ public class NomeMatriculaNestedLoopJoin2 implements Iterator {
 
 	@Override
 	public long calculaCusto() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return   nestedloopjoin.calculaCusto() + selecao.calculaCusto() ;
 	}
 
 }

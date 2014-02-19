@@ -1,5 +1,6 @@
 package br.ufrrj.im.cc.ed2.join.base;
 
+
 public class Projecao implements Iterator {
 
 	private Iterator selecao;
@@ -7,7 +8,7 @@ public class Projecao implements Iterator {
 	private String tipoRelacao;
 	private String coluna;
 	private String coluna2;
-	private String coluna3;
+
 
 
 	public Projecao(String tipoRelacao, String coluna) {
@@ -36,7 +37,7 @@ public class Projecao implements Iterator {
 		this.relacao = relacao;
 		this.coluna = coluna;
 		this.coluna2 = coluna2;
-		this.coluna3 = coluna3;
+
 
 	}
 
@@ -56,57 +57,36 @@ public class Projecao implements Iterator {
 		Tupla valor = new Tupla();
 		ColunaTupla c;
 		ColunaTupla c2;
-		ColunaTupla c3;
+
 
 		tupla = (Tupla) relacao.next();
 
-		if(coluna3 == null){
-
-			if(coluna2 == null){
-
-				if(tupla != null){
-
-					c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
-					valor.adicionaColuna(c);
-					return valor;
-				}
-				else
-					return null;
-			}
-			else {
-				if(tupla != null){
-					
-					c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
-					c2 = new ColunaTupla(coluna2, tupla.getValorCampo(coluna2));
-
-					valor.adicionaColuna(c);
-					valor.adicionaColuna(c2);
-					return valor;
-				}
-				else
-					return null;
-			}
-		}
-		else{
+		if(coluna2 == null){
 
 			if(tupla != null){
 
 				c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
-				c2 = new ColunaTupla(coluna2, tupla.getValorCampo(coluna2));
-				c3 = new ColunaTupla(coluna3, tupla.getValorCampo(coluna3));
-
 				valor.adicionaColuna(c);
-				valor.adicionaColuna(c2);
-				valor.adicionaColuna(c3);
 				return valor;
 			}
 			else
 				return null;
-
 		}
+		else {
+			if(tupla != null){
 
+				c = new ColunaTupla(coluna, tupla.getValorCampo(coluna));
+				c2 = new ColunaTupla(coluna2, tupla.getValorCampo(coluna2));
 
+				valor.adicionaColuna(c);
+				valor.adicionaColuna(c2);
+				return valor;
+			}
+			else
+				return null;
+		}
 	}
+
 
 
 	@Override

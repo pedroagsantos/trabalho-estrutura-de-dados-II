@@ -23,6 +23,8 @@ public class NomeMatriculaMergeJoin2 implements Iterator {
 		this.mergejoin = new MergeJoin("Curso", "id", "Alunos", "curso_id");
 		this.selecao = new Selecao(mergejoin, "nome_curso", curso);//"MATEMÁTICA"
 
+
+
 	}
 
 	@Override
@@ -49,6 +51,7 @@ public class NomeMatriculaMergeJoin2 implements Iterator {
 				colunaB = new ColunaTupla("matricula", tupla.getValorCampo("matricula"));
 				tuplaResultante.adicionaColuna(colunaA);
 				tuplaResultante.adicionaColuna(colunaB);
+				//System.out.println(tuplaResultante);
 
 				return tuplaResultante;
 
@@ -66,8 +69,8 @@ public class NomeMatriculaMergeJoin2 implements Iterator {
 
 	@Override
 	public long calculaCusto() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		 return   mergejoin.calculaCusto() + selecao.calculaCusto() ;
 	}
 
 }

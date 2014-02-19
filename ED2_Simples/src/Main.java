@@ -1,3 +1,4 @@
+import br.ufrrj.im.cc.ed2.consulta.ConsultaNomeMatricula.ProjecaoNomeMatricula;
 import br.ufrrj.im.cc.ed2.join.base.Projecao;
 import br.ufrrj.im.cc.ed2.join.base.Selecao;
 import br.ufrrj.im.cc.ed2.join.base.Tupla;
@@ -42,7 +43,7 @@ public class Main {
 		Projecao relation1 = new Projecao(relation2, "nome");*/
 		 
 		
-		relation1.open();
+		/*relation1.open();
 		Tupla tupla;
 		int i = 0;
 		while ((tupla = (Tupla) relation1.next()) != null) {
@@ -53,7 +54,7 @@ public class Main {
 			System.out.println("["+tupla.getValorCampo("nome")+"] : "+tupla.getValorCampo("matricula") + " [id] "+":" +tupla.getValorCampo("id") + " " + i);
 			
 		}
-		relation1.close();
+		relation1.close();*/
 		
 		//System.out.println(relation2.calculaCusto());
 		//System.out.println(relation.calculaCusto());
@@ -64,11 +65,14 @@ public class Main {
 	}
 
 
-	public static void main(String[] args) {
-		testaJoin();
 
+	public static void main(String[] args) {
+		//testaJoin();
+		ProjecaoNomeMatricula p = new ProjecaoNomeMatricula("MATEMÁTICA");
+		p.projeta();
 		//System.out.println("aqui");
 
 	}
+
 
 }

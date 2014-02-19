@@ -37,7 +37,8 @@ public class Catalogo {
 		itens.add(itemCurso);
 
 		criaColunasDisciplina("id", 0);
-		criaColunasDisciplina("nome", 1);
+		//Mudei o nome disciplina de nome para nome_disciplina
+		criaColunasDisciplina("nome_disciplina", 1);
 		criaColunasDisciplina("curso_id", 2);
 		ItemCatalogo itemDisciplina = new ItemCatalogo("Disciplinas", "Disciplinas.txt", colunasRelacaoDisciplina, 303);
 		itens.add(itemDisciplina);

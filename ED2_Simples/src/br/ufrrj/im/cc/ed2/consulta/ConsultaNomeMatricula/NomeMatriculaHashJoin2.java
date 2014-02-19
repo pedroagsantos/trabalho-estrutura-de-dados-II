@@ -46,11 +46,12 @@ public class NomeMatriculaHashJoin2 implements Iterator{
 
 				tuplaResultante = new Tupla();
 				
-				colunaA = new ColunaTupla("nome_curso", tupla.getValorCampo("nome_curso"));
+				colunaA = new ColunaTupla("nome", tupla.getValorCampo("nome"));
 				colunaB = new ColunaTupla("matricula", tupla.getValorCampo("matricula"));
 				
 				tuplaResultante.adicionaColuna(colunaA);
 				tuplaResultante.adicionaColuna(colunaB);
+				//System.out.println(tuplaResultante);
 
 				return tuplaResultante;
 
@@ -68,8 +69,8 @@ public class NomeMatriculaHashJoin2 implements Iterator{
 
 	@Override
 	public long calculaCusto() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		 return   hashjoin.calculaCusto() + selecao.calculaCusto() ;
 	}
 
 }

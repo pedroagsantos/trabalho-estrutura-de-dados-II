@@ -15,7 +15,7 @@ public class NomeMatriculaHashJoin1 implements Iterator{
 	Tupla tuplaResultante;
 
 
-	public  NomeMatriculaHashJoin1(String curso) {
+	public  NomeMatriculaHashJoin1(String Cursos) {
 
 		//Selecao  relation = new Selecao("Cursos", "nome_curso", "MATEMÁTICA");
 		//HashJoin relation2 = new HashJoin(relation, "id", "Alunos", "curso_id");
@@ -24,8 +24,9 @@ public class NomeMatriculaHashJoin1 implements Iterator{
 		//Projecao relation1 = new Projecao(relation2, "nome", "matricula");
 
 		this.relacao = new Relacao("Cursos");
-		this.selecao = new Selecao("Cursos", "nome_curso", curso);
+		this.selecao = new Selecao("Cursos", "nome_curso", "MATEMÁTICA");
 		this.hashjoin = new HashJoin(selecao, "id", "Alunos", "curso_id");
+
 
 	}
 
@@ -42,20 +43,24 @@ public class NomeMatriculaHashJoin1 implements Iterator{
 		ColunaTupla colunaA;
 		ColunaTupla colunaB;
 
+
 		while ((tupla = (Tupla) hashjoin.next()) != null) {
 
 			if(tupla.getValorCampo("nome_curso") != null){
 
 				tuplaResultante = new Tupla();
 				
-				colunaA = new ColunaTupla("nome_curso", tupla.getValorCampo("nome_curso"));
+				colunaA = new ColunaTupla("nome", tupla.getValorCampo("nome"));
 				colunaB = new ColunaTupla("matricula", tupla.getValorCampo("matricula"));
-				
+			
 				tuplaResultante.adicionaColuna(colunaA);
 				tuplaResultante.adicionaColuna(colunaB);
+				//System.out.println(tuplaResultante);
 
 				return tuplaResultante;
+
 			}
+
 		}
 		return null;
 	}
@@ -67,12 +72,11 @@ public class NomeMatriculaHashJoin1 implements Iterator{
 	}
 
 
-
-
 	@Override
 	public long calculaCusto() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return relacao.calculaCusto() + selecao.calculaCusto() + hashjoin.calculaCusto();
+		
 	}
 
 }
